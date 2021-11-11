@@ -1,0 +1,51 @@
+{
+  "Defaults": {},
+  "Thresholding_Batch_0": {
+    "ram_style": "distributed"
+  },
+  "ConvolutionInputGenerator_0": {
+    "ram_style": "distributed"
+  },
+  "StreamingFCLayer_Batch_0": {
+    "ram_style": "auto"
+  },
+  "ConvolutionInputGenerator_1": {
+    "ram_style": "distributed"
+  },
+  "StreamingFCLayer_Batch_1": {
+    "ram_style": "auto"
+  },
+  "ConvolutionInputGenerator_2": {
+    "ram_style": "distributed"
+  },
+  "StreamingFCLayer_Batch_2": {
+    "ram_style": "auto"
+  },
+  "ConvolutionInputGenerator_3": {
+    "ram_style": "distributed"
+  },
+  "StreamingFCLayer_Batch_3": {
+    "ram_style": "auto"
+  },
+  "ConvolutionInputGenerator_4": {
+    "ram_style": "distributed"
+  },
+  "StreamingFCLayer_Batch_4": {
+    "ram_style": "auto"
+  },
+  "ConvolutionInputGenerator_5": {
+    "ram_style": "distributed"
+  },
+  "StreamingFCLayer_Batch_5": {
+    "ram_style": "auto"
+  },
+  "StreamingFCLayer_Batch_6": {
+    "ram_style": "auto"
+  },
+  "StreamingFCLayer_Batch_7": {
+    "ram_style": "auto"
+  },
+  "StreamingFCLayer_Batch_8": {
+    "ram_style": "auto"
+  }
+}

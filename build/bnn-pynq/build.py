@@ -8,19 +8,19 @@ import shutil
 # the BNN-PYNQ models -- these all come as exported .onnx models
 # see models/download_bnn_pynq_models.sh
 models = [
-    "tfc-w1a1",
-    "tfc-w1a2",
-    "tfc-w2a2",
-    "cnv-w1a1",
-    "cnv-w1a2",
-    "cnv-w2a2",
+#    "tfc-w1a1",
+#    "tfc-w1a2",
+#    "tfc-w2a2",
+    "cnv-w1a1"
+#    "cnv-w1a2",
+#    "cnv-w2a2",
 ]
 
 # which platforms to build the networks for
-zynq_platforms = ["Pynq-Z1", "Ultra96", "ZCU104"]
-alveo_platforms = ["U250"]
-platforms_to_build = zynq_platforms + alveo_platforms
-
+#zynq_platforms = ["Pynq-Z1", "Ultra96", "ZCU104"]
+#alveo_platforms = ["U250"]
+#platforms_to_build = zynq_platforms + alveo_platforms
+platforms_to_build = ["Pynq-Z1"]
 
 # determine which shell flow to use for a given platform
 def platform_to_shell(platform):
@@ -53,13 +53,16 @@ for platform_name in platforms_to_build:
         # set up the build configuration for this model
         cfg = build_cfg.DataflowBuildConfig(
             output_dir="output_%s_%s" % (model_name, release_platform_name),
-            folding_config_file="folding_config/%s_folding_config.json" % model_name,
+            folding_config_file="folding_config/%s_folding_config_clean.json" % model_name,
             synth_clk_period_ns=10.0,
             board=platform_name,
             shell_flow_type=shell_flow_type,
             vitis_platform=vitis_platform,
-            generate_outputs=[build_cfg.DataflowOutputType.BITFILE],
+            generate_outputs=[build_cfg.DataflowOutputType.BITFILE, build_cfg.DataflowOutputType.PYNQ_DRIVER,
+            build_cfg.DataflowOutputType.DEPLOYMENT_PACKAGE, build_cfg.DataflowOutputType.ESTIMATE_REPORTS],
             save_intermediate_models=True,
+            resource_frac=0.7,
+            folding_mode="resources"
         )
         model_file = "models/%s.onnx" % model_name
         # launch FINN compiler to build
