@@ -47,7 +47,7 @@ model_name = "mobilenetv1-w4a4"
 zynq_platforms = ["ZCU102", "ZCU104"]
 #alveo_platforms = ["U50", "U200", "U250", "U280"]
 alveo_platforms = ["U250"]
-platforms_to_build = zynq_platforms + alveo_platforms
+platforms_to_build = alveo_platforms
 
 
 # determine which shell flow to use for a given platform
@@ -97,10 +97,11 @@ def select_build_steps(platform):
             "step_hls_codegen",
             "step_hls_ipgen",
             "step_set_fifo_depths",
-            step_mobilenet_slr_floorplan,
-            "step_synthesize_bitfile",
-            "step_make_pynq_driver",
-            "step_deployment_package",
+            "step_create_stitched_ip",
+            #step_mobilenet_slr_floorplan,
+            #"step_synthesize_bitfile",
+            #"step_make_pynq_driver",
+            #"step_deployment_package",
         ]
 
 
@@ -131,6 +132,14 @@ for platform_name in platforms_to_build:
         board=platform_name,
         shell_flow_type=shell_flow_type,
         vitis_platform=vitis_platform,
+        #start_step="step_create_stitched_ip",
+        verify_steps=[
+            build_cfg.VerificationStepType.STREAMLINED_PYTHON,
+            build_cfg.VerificationStepType.FOLDED_HLS_CPPSIM,
+            build_cfg.VerificationStepType.STITCHED_IP_RTLSIM
+            ],
+        verify_input_npy=<path-to-end2end_mobilenet_input.npy>,
+        verify_expected_output_npy=<path-to-end2end_mobilenet_golden_top5.npy>,
         # folding config comes with FIFO depths already
         auto_fifo_depths=False,
         # enable extra performance optimizations (physopt)
