@@ -1,6 +1,7 @@
-# <img src=https://raw.githubusercontent.com/Xilinx/finn/github-pages/docs/img/finn-logo.png width=200 style="margin-bottom: -15px; margin-right: 10px"/> Dataflow Accelerator Examples <p style="text-align: center; font-size:15px;margin-top:5px;margin-bottom:-5px;font-weight:normal"> <em> for PYNQ on Zynq and Alveo </em> </p> 
+# <img src=https://raw.githubusercontent.com/Xilinx/finn/github-pages/docs/img/finn-logo.png width=200 style="margin-bottom: -15px; margin-right: 10px"/> Dataflow Accelerator Examples
+*for PYNQ on Zynq and Alveo*
 
-<p align="left">
+<p align="left" >
     <a>
         <img src="https://img.shields.io/github/v/release/Xilinx/finn-examples?color=%09%23228B22&display_name=tag&label=Release" />
     </a>
